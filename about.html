@@ -31,13 +31,13 @@
         .section-header { text-align: center; margin-bottom: 3rem; }
         .section-header h2 { font-size: 2rem; color: var(--dark-color); margin-bottom: 1rem; }
         .section-header p { color: var(--gray-600); max-width: 700px; margin: 0 auto; }
-        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
-        .team-member { background-color: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: var(--transition); }
-        .team-member:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
-        .member-image { height: 250px; overflow: hidden; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .member-details { padding: 1.5rem; text-align: center; }
-        .member-details h3 { font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--dark-color); }
-        .member-role { color: var(--primary-color); font-weight: 500; margin-bottom: 1rem; display: block; }
+        .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; max-width: 1200px; margin: 0 auto; }
+        .team-member { background-color: var(--white); border-radius: 12px; overflow: hidden; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); transition: var(--transition); border: 1px solid rgba(0, 0, 0, 0.05); }
+        .team-member:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15); }
+        .member-image { height: 280px; overflow: hidden; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; }
+        .member-details { padding: 2rem 1.5rem; text-align: center; min-height: 180px; display: flex; flex-direction: column; justify-content: space-between; }
+        .member-details h3 { font-size: 1.35rem; margin-bottom: 0.5rem; color: var(--dark-color); font-weight: 700; }
+        .member-role { color: var(--primary-color); font-weight: 600; margin-bottom: 0.75rem; display: block; font-size: 1rem; }
         .member-social { display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; }
         .member-social a { display: flex; align-items: center; justify-content: center; width: 35px; height: 35px; background-color: var(--gray-100); border-radius: 50%; color: var(--gray-700); transition: var(--transition); }
         .member-social a:hover { background-color: var(--primary-color); color: var(--white); transform: translateY(-3px); }
@@ -51,17 +51,24 @@
             .about-text { text-align: center; }
             .about-text h2::after { left: 50%; transform: translateX(-50%); }
         }
+        @media (max-width: 1024px) {
+            .team-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        }
         @media (max-width: 768px) {
             .page-header { padding: 6rem 0 3rem; margin-top: 70px; }
             .section-header h2 { font-size: 1.75rem; }
             .feature-card { padding: 1.5rem; }
-            .member-image { height: 200px; }
+            .team-grid { grid-template-columns: 1fr; gap: 2rem; max-width: 400px; }
+            .member-image { height: 250px; }
+            .member-details { min-height: auto; }
         }
         @media (max-width: 576px) {
             .page-header { padding: 5rem 0 2rem; }
             .about-section, .team-section, .stats-section { padding: 3rem 0; }
             .stat-item h3 { font-size: 2rem; }
             .stat-item p { font-size: 1rem; }
+            .team-grid { gap: 1.5rem; }
+            .member-details { padding: 1.5rem; }
         }
     </style>
 </head>
@@ -188,7 +195,7 @@
             
             <div class="team-grid">
                 <div class="team-member">
-                    <div class="member-image"></div>
+                    <img src="team/Picture 1.jpg"/>
                     <div class="member-details">
                         <h3>Saumya Kumar</h3>
                         <span class="member-role">CEO</span>
@@ -200,19 +207,12 @@
                         </div>
                     </div>
                 </div>
+
                 
                 <div class="team-member">
-                    <div class="member-image">
-                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                            <circle cx="100" cy="70" r="35" fill="#ec4899"/>
-                            <ellipse cx="100" cy="140" rx="50" ry="60" fill="#f472b6"/>
-                            <circle cx="85" cy="65" r="5" fill="white"/>
-                            <circle cx="115" cy="65" r="5" fill="white"/>
-                            <path d="M 85 85 Q 100 95 115 85" stroke="white" stroke-width="3" fill="none"/>
-                            <circle cx="70" cy="55" r="15" fill="#ec4899"/>
-                            <circle cx="130" cy="55" r="15" fill="#ec4899"/>
-                        </svg>
-                    </div>
+                    
+                        <img src="team/nishant.png" style="width: 1000px;"/>
+                    
                     <div class="member-details">
                         <h3>Nishant Ranjan Singh</h3>
                         <span class="member-role">COO</span>
@@ -227,14 +227,7 @@
                 
                 <div class="team-member">
                     <div class="member-image">
-                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                            <circle cx="100" cy="70" r="35" fill="#10b981"/>
-                            <ellipse cx="100" cy="140" rx="50" ry="60" fill="#34d399"/>
-                            <circle cx="85" cy="65" r="5" fill="white"/>
-                            <circle cx="115" cy="65" r="5" fill="white"/>
-                            <path d="M 85 85 Q 100 95 115 85" stroke="white" stroke-width="3" fill="none"/>
-                            <rect x="85" y="45" width="30" height="15" fill="#10b981"/>
-                        </svg>
+                        <img src="team/prashant.jpg"/>
                     </div>
                     <div class="member-details">
                         <h3>Prashant Raj</h3>
@@ -251,20 +244,12 @@
                 
                 <div class="team-member">
                     <div class="member-image">
-                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                            <circle cx="100" cy="70" r="35" fill="#f59e0b"/>
-                            <ellipse cx="100" cy="140" rx="50" ry="60" fill="#fbbf24"/>
-                            <circle cx="85" cy="65" r="5" fill="white"/>
-                            <circle cx="115" cy="65" r="5" fill="white"/>
-                            <path d="M 85 85 Q 100 95 115 85" stroke="white" stroke-width="3" fill="none"/>
-                            <circle cx="70" cy="60" r="12" fill="#f59e0b"/>
-                            <circle cx="130" cy="60" r="12" fill="#f59e0b"/>
-                        </svg>
+                        <img src="team/kunal.jpg"/>
                     </div>
                     <div class="member-details">
-                        <h3>Rahul Sharma</h3>
+                        <h3>Kunal </h3>
                         <span class="member-role">CTO</span>
-                        <p>Tech innovator driving platform development and security.</p>
+                        <p>Tech enthusiast building the platform’s core features.</p>
                         <div class="member-social">
                             <a href="#"><i class="fab fa-linkedin-in"></i></a>
                             <a href="#"><i class="fab fa-github"></i></a>
@@ -275,17 +260,10 @@
                 
                 <div class="team-member">
                     <div class="member-image">
-                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                            <circle cx="100" cy="70" r="35" fill="#8b5cf6"/>
-                            <ellipse cx="100" cy="140" rx="50" ry="60" fill="#a78bfa"/>
-                            <circle cx="85" cy="65" r="5" fill="white"/>
-                            <circle cx="115" cy="65" r="5" fill="white"/>
-                            <path d="M 85 85 Q 100 95 115 85" stroke="white" stroke-width="3" fill="none"/>
-                            <path d="M 70 50 Q 100 30 130 50" stroke="#8b5cf6" stroke-width="8" fill="none"/>
-                        </svg>
+                        <img src="team/cmo.jpg"/>
                     </div>
                     <div class="member-details">
-                        <h3>Priya Verma</h3>
+                        <h3>Sarvjeet Yadav</h3>
                         <span class="member-role">CMO</span>
                         <p>Creative marketer building brand awareness and engagement.</p>
                         <div class="member-social">
