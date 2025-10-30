@@ -19,10 +19,11 @@
         }
         .page-header h1 { font-size: 2.5rem; margin-bottom: 1rem; color: var(--white); }
         .page-header p { max-width: 700px; margin: 0 auto 2rem; font-size: 1.1rem; opacity: 0.9; }
-        .services-search { max-width: 800px; margin: -30px auto 0; position: relative; z-index: 10; padding: 0 20px; }
-        .search-container { background: var(--white); border-radius: 8px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); padding: 1.5rem; display: flex; flex-wrap: wrap; gap: 1rem; }
-        .search-container input, .search-container select { flex: 1; min-width: 200px; padding: 0.75rem 1rem; border: 1px solid var(--gray-300); border-radius: 4px; font-size: 1rem; }
-        .search-container button { padding: 0.75rem 2rem; }
+        .services-search { max-width: 900px; margin: -40px auto 0; position: relative; z-index: 10; padding: 0 20px; }
+        .search-container { background: var(--white); border-radius: 16px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15); padding: 2rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; border: 2px solid var(--gray-100); }
+        .search-container input, .search-container select { flex: 1; min-width: 200px; padding: 1rem 1.25rem; border: 2px solid var(--gray-200); border-radius: 10px; font-size: 1rem; transition: all 0.3s ease; background-color: var(--gray-50); }
+        .search-container input:focus, .search-container select:focus { outline: none; border-color: var(--primary-color); background-color: var(--white); box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1); transform: translateY(-2px); }
+        .search-container button { padding: 1rem 2.5rem; font-weight: 700; font-size: 1.05rem; border-radius: 10px; }
         .services-section { padding: 5rem 0; background-color: var(--white); }
         .services-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
         .services-header h2 { margin-bottom: 0; }
@@ -30,9 +31,16 @@
         .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
         .service-card { background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: var(--transition); }
         .service-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
-        .service-image { height: 200px; overflow: hidden; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .service-image { height: 200px; overflow: hidden; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); position: relative; display: flex; align-items: center; justify-content: center; }
         .service-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .service-card:hover .service-image img { transform: scale(1.05); }
+        .service-card:hover .service-image img { transform: scale(1.1); }
+        .service-image i { font-size: 4rem; color: rgba(255, 255, 255, 0.9); }
+        .service-image.tutoring { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .service-image.plumbing { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .service-image.electrical { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .service-image.housekeeping { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .service-image.carpentry { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .service-image.painting { background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); }
         .service-details { padding: 1.5rem; }
         .service-category { display: inline-block; background-color: var(--primary-color); color: var(--white); font-size: 0.75rem; padding: 0.25rem 0.75rem; border-radius: 20px; margin-bottom: 0.75rem; }
         .service-title { font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--dark-color); }
@@ -69,7 +77,10 @@
 <body>
     <nav class="navbar">
         <div class="container">
-            <a href="index.html" class="logo">Nearby<span>Services</span></a>
+            <a href="index.html" class="logo">
+                <img src="public/nearby.in.png" alt="Nearby Logo" class="logo-img">
+                Nearby<span>Services</span>
+            </a>
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="services.html" class="active">Find Services</a>
@@ -127,7 +138,9 @@
 
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-image"></div>
+                    <div class="service-image tutoring">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
                     <div class="service-details">
                         <span class="service-category">Tutoring</span>
                         <h3 class="service-title">Mathematics Tutor</h3>
@@ -148,7 +161,9 @@
                 </div>
 
                 <div class="service-card">
-                    <div class="service-image"></div>
+                    <div class="service-image plumbing">
+                        <i class="fas fa-tools"></i>
+                    </div>
                     <div class="service-details">
                         <span class="service-category">Plumbing</span>
                         <h3 class="service-title">Residential Plumbing Services</h3>
@@ -169,7 +184,9 @@
                 </div>
 
                 <div class="service-card">
-                    <div class="service-image"></div>
+                    <div class="service-image electrical">
+                        <i class="fas fa-bolt"></i>
+                    </div>
                     <div class="service-details">
                         <span class="service-category">Electrical</span>
                         <h3 class="service-title">Certified Electrician</h3>
@@ -190,7 +207,9 @@
                 </div>
 
                 <div class="service-card">
-                    <div class="service-image"></div>
+                    <div class="service-image housekeeping">
+                        <i class="fas fa-broom"></i>
+                    </div>
                     <div class="service-details">
                         <span class="service-category">Cleaning</span>
                         <h3 class="service-title">Professional House Cleaning</h3>
@@ -211,7 +230,9 @@
                 </div>
 
                 <div class="service-card">
-                    <div class="service-image"></div>
+                    <div class="service-image carpentry">
+                        <i class="fas fa-hammer"></i>
+                    </div>
                     <div class="service-details">
                         <span class="service-category">Carpentry</span>
                         <h3 class="service-title">Custom Furniture & Repairs</h3>
@@ -232,7 +253,9 @@
                 </div>
 
                 <div class="service-card">
-                    <div class="service-image"></div>
+                    <div class="service-image painting">
+                        <i class="fas fa-paint-roller"></i>
+                    </div>
                     <div class="service-details">
                         <span class="service-category">Painting</span>
                         <h3 class="service-title">Interior & Exterior Painting</h3>
@@ -273,7 +296,10 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-about">
-                    <h3>NearbyServices</h3>
+                    <h3>
+                        <img src="public/nearby.in.png" alt="Nearby Logo" class="footer-logo-img">
+                        NearbyServices
+                    </h3>
                     <p>Connecting you with trusted local service providers for all your needs.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>
