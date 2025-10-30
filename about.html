@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Nearby Services</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .page-header { background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), #4a6cf7; color: var(--white); padding: 8rem 0 4rem; text-align: center; margin-top: 80px; }
+        .page-header h1 { font-size: 2.5rem; margin-bottom: 1rem; color: var(--white); }
+        .page-header p { max-width: 700px; margin: 0 auto 2rem; font-size: 1.1rem; opacity: 0.9; }
+        .about-section { padding: 5rem 0; }
+        .about-content { display: flex; align-items: center; gap: 4rem; margin-bottom: 5rem; }
+        .about-image { flex: 1; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 400px; }
+        .about-text { flex: 1; }
+        .about-text h2 { font-size: 2rem; margin-bottom: 1.5rem; color: var(--dark-color); position: relative; padding-bottom: 1rem; text-align: left; }
+        .about-text h2::after { content: ''; position: absolute; bottom: 0; left: 0; width: 60px; height: 3px; background-color: var(--primary-color); }
+        .about-text p { margin-bottom: 1.5rem; color: var(--gray-600); line-height: 1.8; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .feature-card { background-color: var(--white); padding: 2rem; border-radius: 8px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); text-align: center; transition: var(--transition); }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
+        .feature-icon { width: 70px; height: 70px; margin: 0 auto 1.5rem; background-color: rgba(74, 108, 247, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .feature-icon i { font-size: 1.8rem; color: var(--primary-color); }
+        .feature-card h3 { font-size: 1.25rem; margin-bottom: 1rem; color: var(--dark-color); }
+        .feature-card p { color: var(--gray-600); font-size: 0.95rem; line-height: 1.6; }
+        .team-section { background-color: var(--gray-100); padding: 5rem 0; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 { font-size: 2rem; color: var(--dark-color); margin-bottom: 1rem; }
+        .section-header p { color: var(--gray-600); max-width: 700px; margin: 0 auto; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .team-member { background-color: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: var(--transition); }
+        .team-member:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
+        .member-image { height: 250px; overflow: hidden; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .member-details { padding: 1.5rem; text-align: center; }
+        .member-details h3 { font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--dark-color); }
+        .member-role { color: var(--primary-color); font-weight: 500; margin-bottom: 1rem; display: block; }
+        .member-social { display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; }
+        .member-social a { display: flex; align-items: center; justify-content: center; width: 35px; height: 35px; background-color: var(--gray-100); border-radius: 50%; color: var(--gray-700); transition: var(--transition); }
+        .member-social a:hover { background-color: var(--primary-color); color: var(--white); transform: translateY(-3px); }
+        .stats-section { padding: 5rem 0; background: linear-gradient(135deg, #4a6cf7 0%, #3a5bd9 100%); color: var(--white); text-align: center; }
+        .stats-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+        .stat-item h3 { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--white); }
+        .stat-item p { font-size: 1.1rem; opacity: 0.9; }
+        @media (max-width: 992px) {
+            .about-content { flex-direction: column; gap: 2rem; }
+            .about-image { max-width: 600px; margin: 0 auto; }
+            .about-text { text-align: center; }
+            .about-text h2::after { left: 50%; transform: translateX(-50%); }
+        }
+        @media (max-width: 768px) {
+            .page-header { padding: 6rem 0 3rem; margin-top: 70px; }
+            .section-header h2 { font-size: 1.75rem; }
+            .feature-card { padding: 1.5rem; }
+            .member-image { height: 200px; }
+        }
+        @media (max-width: 576px) {
+            .page-header { padding: 5rem 0 2rem; }
+            .about-section, .team-section, .stats-section { padding: 3rem 0; }
+            .stat-item h3 { font-size: 2rem; }
+            .stat-item p { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Nearby<span>Services</span></a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="services.html">Find Services</a>
+                <a href="about.html" class="active">About</a>
+                <a href="contact.html">Contact</a>
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-outline">Login</a>
+                    <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                </div>
+            </div>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>About Us</h1>
+            <p>Connecting you with trusted local service providers for all your needs</p>
+        </div>
+    </header>
+
+    <section class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                        <defs>
+                            <linearGradient id="aboutGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Building/Office Illustration -->
+                        <rect x="100" y="150" width="200" height="200" fill="url(#aboutGrad)" opacity="0.3" rx="10"/>
+                        <rect x="120" y="170" width="160" height="180" fill="white" opacity="0.9" rx="5"/>
+                        
+                        <!-- Windows -->
+                        <rect x="140" y="190" width="30" height="30" fill="#667eea" opacity="0.7" rx="3"/>
+                        <rect x="185" y="190" width="30" height="30" fill="#667eea" opacity="0.7" rx="3"/>
+                        <rect x="230" y="190" width="30" height="30" fill="#667eea" opacity="0.7" rx="3"/>
+                        
+                        <rect x="140" y="235" width="30" height="30" fill="#764ba2" opacity="0.7" rx="3"/>
+                        <rect x="185" y="235" width="30" height="30" fill="#764ba2" opacity="0.7" rx="3"/>
+                        <rect x="230" y="235" width="30" height="30" fill="#764ba2" opacity="0.7" rx="3"/>
+                        
+                        <rect x="140" y="280" width="30" height="30" fill="#667eea" opacity="0.7" rx="3"/>
+                        <rect x="185" y="280" width="30" height="30" fill="#667eea" opacity="0.7" rx="3"/>
+                        <rect x="230" y="280" width="30" height="30" fill="#764ba2" opacity="0.7" rx="3"/>
+                        
+                        <!-- Door -->
+                        <rect x="175" y="310" width="50" height="40" fill="#667eea" rx="3"/>
+                        
+                        <!-- People silhouettes -->
+                        <circle cx="80" cy="300" r="15" fill="#fbbf24"/>
+                        <rect x="70" y="318" width="20" height="30" rx="3" fill="#fbbf24"/>
+                        
+                        <circle cx="320" cy="300" r="15" fill="#10b981"/>
+                        <rect x="310" y="318" width="20" height="30" rx="3" fill="#10b981"/>
+                        
+                        <!-- Stars/Rating -->
+                        <text x="200" y="130" text-anchor="middle" font-size="40">⭐</text>
+                        <text x="160" y="110" text-anchor="middle" font-size="25">⭐</text>
+                        <text x="240" y="110" text-anchor="middle" font-size="25">⭐</text>
+                    </svg>
+                </div>
+                <div class="about-text">
+                    <h2>Our Story</h2>
+                    <p>Founded in 2023, Nearby Services was born out of a simple yet powerful idea: to make finding reliable local service providers as easy as a few clicks. We understand the challenges of finding trustworthy professionals for your everyday needs, and we're here to change that.</p>
+                    <p>Our platform connects service seekers with verified local professionals, ensuring quality, reliability, and peace of mind. Whether you need a tutor for your child, a plumber for a leaky faucet, or help around the house, we've got you covered.</p>
+                    <p>We believe in empowering local service providers by giving them the tools and visibility they need to grow their businesses while providing customers with a seamless experience.</p>
+                </div>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Verified Professionals</h3>
+                    <p>Every service provider on our platform is thoroughly vetted to ensure quality and reliability.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3>Affordable Rates</h3>
+                    <p>Get competitive pricing from local professionals without the middleman markups.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Customer Reviews</h3>
+                    <p>Read genuine reviews from other customers to make informed decisions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Our dedicated support team is always here to help you with any questions or concerns.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Meet Our Team</h2>
+                <p>The passionate individuals behind Nearby Services who work tirelessly to make your experience exceptional.</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image"></div>
+                    <div class="member-details">
+                        <h3>Rajesh Kumar</h3>
+                        <span class="member-role">Founder & CEO</span>
+                        <p>With over 10 years of experience in the tech industry, Rajesh envisioned a platform that would bridge the gap between service providers and customers.</p>
+                        <div class="member-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                            <circle cx="100" cy="70" r="35" fill="#ec4899"/>
+                            <ellipse cx="100" cy="140" rx="50" ry="60" fill="#f472b6"/>
+                            <circle cx="85" cy="65" r="5" fill="white"/>
+                            <circle cx="115" cy="65" r="5" fill="white"/>
+                            <path d="M 85 85 Q 100 95 115 85" stroke="white" stroke-width="3" fill="none"/>
+                            <circle cx="70" cy="55" r="15" fill="#ec4899"/>
+                            <circle cx="130" cy="55" r="15" fill="#ec4899"/>
+                        </svg>
+                    </div>
+                    <div class="member-details">
+                        <h3>Priya Sharma</h3>
+                        <span class="member-role">Head of Operations</span>
+                        <p>Priya ensures that our platform runs smoothly and that both customers and service providers have the best possible experience.</p>
+                        <div class="member-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                            <circle cx="100" cy="70" r="35" fill="#10b981"/>
+                            <ellipse cx="100" cy="140" rx="50" ry="60" fill="#34d399"/>
+                            <circle cx="85" cy="65" r="5" fill="white"/>
+                            <circle cx="115" cy="65" r="5" fill="white"/>
+                            <path d="M 85 85 Q 100 95 115 85" stroke="white" stroke-width="3" fill="none"/>
+                            <rect x="85" y="45" width="30" height="15" fill="#10b981"/>
+                        </svg>
+                    </div>
+                    <div class="member-details">
+                        <h3>Amit Patel</h3>
+                        <span class="member-role">CTO</span>
+                        <p>A tech enthusiast with a passion for building scalable platforms, Amit leads our technology team to create seamless user experiences.</p>
+                        <div class="member-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <h3>10,000+</h3>
+                    <p>Happy Customers</p>
+                </div>
+                <div class="stat-item">
+                    <h3>5,000+</h3>
+                    <p>Verified Professionals</p>
+                </div>
+                <div class="stat-item">
+                    <h3>50+</h3>
+                    <p>Service Categories</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24/7</h3>
+                    <p>Customer Support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Get Started?</h2>
+            <p>Join thousands of satisfied customers who found reliable help through our platform.</p>
+            <a href="signup.html" class="btn btn-primary">Sign Up Now</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>NearbyServices</h3>
+                    <p>Connecting you with trusted local service providers for all your needs.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Tutors</a></li>
+                        <li><a href="#">Plumbers</a></li>
+                        <li><a href="#">Electricians</a></li>
+                        <li><a href="#">House Help</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-envelope"></i> contact@nearbyservices.com</p>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Service Lane, Your City, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NearbyServices. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nearby Services - Find Local Service Providers</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Nearby<span>Services</span></a>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="services.html">Find Services</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-outline">Login</a>
+                    <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                </div>
+            </div>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="badge badge-new" style="margin-bottom: 1rem;">
+                    <i class="fas fa-star"></i> New Platform Launch
+                </div>
+                <h1>Find Trusted Local Service Providers</h1>
+                <p>Connect with verified professionals for all your service needs at affordable rates. Join 10,000+ happy customers!</p>
+                <div class="search-box">
+                    <input type="text" placeholder="What service do you need?">
+                    <input type="text" placeholder="Location">
+                    <button class="btn btn-primary">Search</button>
+                </div>
+                <div class="popular-tags">
+                    <span>Popular: </span>
+                    <a href="#">Tutors</a>
+                    <a href="#">Electricians</a>
+                    <a href="#">House Help</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <!-- Service Provider Illustration -->
+                    <circle cx="250" cy="250" r="200" fill="url(#grad1)" opacity="0.1"/>
+                    <circle cx="250" cy="250" r="150" fill="url(#grad1)" opacity="0.2"/>
+                    <circle cx="250" cy="250" r="100" fill="url(#grad1)" opacity="0.3"/>
+                    
+                    <!-- People Icons -->
+                    <circle cx="200" cy="180" r="30" fill="#6366f1"/>
+                    <rect x="180" y="215" width="40" height="50" rx="5" fill="#6366f1"/>
+                    
+                    <circle cx="300" cy="180" r="30" fill="#ec4899"/>
+                    <rect x="280" y="215" width="40" height="50" rx="5" fill="#ec4899"/>
+                    
+                    <circle cx="250" cy="280" r="30" fill="#10b981"/>
+                    <rect x="230" y="315" width="40" height="50" rx="5" fill="#10b981"/>
+                    
+                    <!-- Connection Lines -->
+                    <line x1="200" y1="210" x2="250" y2="280" stroke="#6366f1" stroke-width="3" opacity="0.5"/>
+                    <line x1="300" y1="210" x2="250" y2="280" stroke="#ec4899" stroke-width="3" opacity="0.5"/>
+                    
+                    <!-- Service Icons -->
+                    <circle cx="150" cy="300" r="20" fill="#f59e0b"/>
+                    <text x="150" y="308" text-anchor="middle" fill="white" font-size="20">🔧</text>
+                    
+                    <circle cx="350" cy="300" r="20" fill="#3b82f6"/>
+                    <text x="350" y="308" text-anchor="middle" fill="white" font-size="20">📚</text>
+                    
+                    <circle cx="250" cy="400" r="20" fill="#8b5cf6"/>
+                    <text x="250" y="408" text-anchor="middle" fill="white" font-size="20">🏠</text>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+{{ ... }}
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Search Services</h3>
+                    <p>Find the service you need in your local area.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Compare & Choose</h3>
+                    <p>View profiles, ratings, and reviews.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Connect Securely</h3>
+                    <p>Pay a small fee to contact the provider.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Services -->
+    <section class="popular-services">
+        <div class="container">
+            <h2>Popular Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="badge badge-verified" style="margin-bottom: 1rem;">
+                        <i class="fas fa-check-circle"></i> 500+ Verified
+                    </div>
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h3>Tutors</h3>
+                    <p>Find qualified tutors for all subjects and grades.</p>
+                </div>
+                <div class="service-card">
+                    <div class="badge badge-premium" style="margin-bottom: 1rem;">
+                        <i class="fas fa-crown"></i> Premium
+                    </div>
+                    <i class="fas fa-tools"></i>
+                    <h3>Plumbers</h3>
+                    <p>Expert plumbing services at your doorstep.</p>
+                </div>
+                <div class="service-card">
+                    <div class="badge badge-verified" style="margin-bottom: 1rem;">
+                        <i class="fas fa-check-circle"></i> 300+ Verified
+                    </div>
+                    <i class="fas fa-bolt"></i>
+                    <h3>Electricians</h3>
+                    <p>Professional electrical services for your home.</p>
+                </div>
+                <div class="service-card">
+                    <div class="badge badge-new" style="margin-bottom: 1rem;">
+                        <i class="fas fa-fire"></i> Trending
+                    </div>
+                    <i class="fas fa-home"></i>
+                    <h3>House Help</h3>
+                    <p>Find reliable domestic help for your home.</p>
+                </div>
+            </div>
+            <div class="text-center">
+                <a href="services.html" class="btn btn-outline">View All Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose-us">
+        <div class="container">
+            <h2>Why Choose Nearby Services?</h2>
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <h3>Verified Providers</h3>
+                        <p>All service providers are thoroughly vetted and verified.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-star"></i>
+                    <div>
+                        <h3>Ratings & Reviews</h3>
+                        <p>Read genuine reviews from other customers.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-rupee-sign"></i>
+                    <div>
+                        <h3>Affordable</h3>
+                        <p>Competitive pricing with no hidden charges.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-headset"></i>
+                    <div>
+                        <h3>24/7 Support</h3>
+                        <p>Our team is always here to help you.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Find Your Perfect Service Provider?</h2>
+            <p>Join thousands of satisfied customers who found reliable help through our platform.</p>
+            <a href="signup.html" class="btn btn-primary">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>NearbyServices</h3>
+                    <p>Connecting you with trusted local service providers for all your needs.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Tutors</a></li>
+                        <li><a href="#">Plumbers</a></li>
+                        <li><a href="#">Electricians</a></li>
+                        <li><a href="#">House Help</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-envelope"></i> contact@nearbyservices.com</p>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Service Lane, Your City, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NearbyServices. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

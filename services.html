@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Services - Nearby Services</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), #4a6cf7;
+            color: var(--white);
+            padding: 8rem 0 4rem;
+            text-align: center;
+            margin-top: 80px;
+        }
+        .page-header h1 { font-size: 2.5rem; margin-bottom: 1rem; color: var(--white); }
+        .page-header p { max-width: 700px; margin: 0 auto 2rem; font-size: 1.1rem; opacity: 0.9; }
+        .services-search { max-width: 800px; margin: -30px auto 0; position: relative; z-index: 10; padding: 0 20px; }
+        .search-container { background: var(--white); border-radius: 8px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); padding: 1.5rem; display: flex; flex-wrap: wrap; gap: 1rem; }
+        .search-container input, .search-container select { flex: 1; min-width: 200px; padding: 0.75rem 1rem; border: 1px solid var(--gray-300); border-radius: 4px; font-size: 1rem; }
+        .search-container button { padding: 0.75rem 2rem; }
+        .services-section { padding: 5rem 0; background-color: var(--white); }
+        .services-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+        .services-header h2 { margin-bottom: 0; }
+        .sort-by { display: flex; align-items: center; gap: 0.5rem; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+        .service-card { background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: var(--transition); }
+        .service-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
+        .service-image { height: 200px; overflow: hidden; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .service-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .service-card:hover .service-image img { transform: scale(1.05); }
+        .service-details { padding: 1.5rem; }
+        .service-category { display: inline-block; background-color: var(--primary-color); color: var(--white); font-size: 0.75rem; padding: 0.25rem 0.75rem; border-radius: 20px; margin-bottom: 0.75rem; }
+        .service-title { font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--dark-color); }
+        .service-provider { display: flex; align-items: center; margin-bottom: 0.75rem; }
+        .provider-avatar { width: 30px; height: 30px; border-radius: 50%; overflow: hidden; margin-right: 10px; background: var(--gray-300); }
+        .provider-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .provider-name { font-weight: 500; font-size: 0.9rem; }
+        .service-rating { display: flex; align-items: center; margin-bottom: 1rem; }
+        .rating-stars { color: var(--warning-color); font-size: 0.9rem; margin-right: 5px; }
+        .rating-count { font-size: 0.85rem; color: var(--gray-600); }
+        .service-description { font-size: 0.9rem; color: var(--gray-600); margin-bottom: 1.5rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .service-footer { display: flex; justify-content: space-between; align-items: center; }
+        .service-price { font-size: 1.25rem; font-weight: 700; color: var(--primary-color); }
+        .service-price span { font-size: 0.9rem; font-weight: normal; color: var(--gray-600); }
+        .pagination { display: flex; justify-content: center; margin-top: 3rem; gap: 0.5rem; }
+        .page-item { display: inline-flex; }
+        .page-link { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1px solid var(--gray-300); border-radius: 4px; color: var(--gray-700); font-weight: 500; transition: var(--transition); }
+        .page-item.active .page-link { background-color: var(--primary-color); border-color: var(--primary-color); color: var(--white); }
+        .page-item:not(.active):hover .page-link { background-color: var(--gray-100); border-color: var(--gray-400); }
+        .page-item.disabled .page-link { color: var(--gray-400); pointer-events: none; }
+        @media (max-width: 768px) {
+            .page-header { padding: 6rem 0 3rem; margin-top: 70px; }
+            .services-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .sort-by { width: 100%; }
+            .services-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 576px) {
+            .page-header h1 { font-size: 2rem; }
+            .search-container { flex-direction: column; }
+            .search-container input, .search-container select, .search-container button { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Nearby<span>Services</span></a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="services.html" class="active">Find Services</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-outline">Login</a>
+                    <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                </div>
+            </div>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>Find the Best Service Providers</h1>
+            <p>Browse through our verified professionals and find the perfect match for your needs</p>
+        </div>
+    </header>
+
+    <div class="services-search">
+        <div class="search-container">
+            <input type="text" placeholder="What service are you looking for?">
+            <input type="text" placeholder="Location">
+            <select>
+                <option value="">All Categories</option>
+                <option value="tutors">Tutors</option>
+                <option value="plumbers">Plumbers</option>
+                <option value="electricians">Electricians</option>
+                <option value="house-help">House Help</option>
+            </select>
+            <button class="btn btn-primary">Search</button>
+        </div>
+    </div>
+
+    <section class="services-section">
+        <div class="container">
+            <div class="services-header">
+                <h2>Available Services</h2>
+                <div class="sort-by">
+                    <span>Sort by:</span>
+                    <select style="padding: 0.5rem; border: 1px solid var(--gray-300); border-radius: 4px;">
+                        <option>Recommended</option>
+                        <option>Top Rated</option>
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-image"></div>
+                    <div class="service-details">
+                        <span class="service-category">Tutoring</span>
+                        <h3 class="service-title">Mathematics Tutor</h3>
+                        <div class="service-provider">
+                            <div class="provider-avatar"></div>
+                            <span class="provider-name">John Doe</span>
+                        </div>
+                        <div class="service-rating">
+                            <span class="rating-stars">★★★★★</span>
+                            <span class="rating-count">(24)</span>
+                        </div>
+                        <p class="service-description">Experienced math tutor specializing in algebra, calculus, and geometry. Customized lessons for all levels.</p>
+                        <div class="service-footer">
+                            <div class="service-price">₹500 <span>/hr</span></div>
+                            <a href="#" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image"></div>
+                    <div class="service-details">
+                        <span class="service-category">Plumbing</span>
+                        <h3 class="service-title">Residential Plumbing Services</h3>
+                        <div class="service-provider">
+                            <div class="provider-avatar"></div>
+                            <span class="provider-name">Rajesh Kumar</span>
+                        </div>
+                        <div class="service-rating">
+                            <span class="rating-stars">★★★★☆</span>
+                            <span class="rating-count">(18)</span>
+                        </div>
+                        <p class="service-description">Expert plumbing services for all your residential needs. Leak repairs, pipe installations, and more.</p>
+                        <div class="service-footer">
+                            <div class="service-price">₹800 <span>/service</span></div>
+                            <a href="#" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image"></div>
+                    <div class="service-details">
+                        <span class="service-category">Electrical</span>
+                        <h3 class="service-title">Certified Electrician</h3>
+                        <div class="service-provider">
+                            <div class="provider-avatar"></div>
+                            <span class="provider-name">Amit Sharma</span>
+                        </div>
+                        <div class="service-rating">
+                            <span class="rating-stars">★★★★★</span>
+                            <span class="rating-count">(32)</span>
+                        </div>
+                        <p class="service-description">Licensed electrician providing quality electrical services for homes and businesses. 24/7 emergency service available.</p>
+                        <div class="service-footer">
+                            <div class="service-price">₹1,200 <span>/service</span></div>
+                            <a href="#" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image"></div>
+                    <div class="service-details">
+                        <span class="service-category">Cleaning</span>
+                        <h3 class="service-title">Professional House Cleaning</h3>
+                        <div class="service-provider">
+                            <div class="provider-avatar"></div>
+                            <span class="provider-name">Priya Patel</span>
+                        </div>
+                        <div class="service-rating">
+                            <span class="rating-stars">★★★★★</span>
+                            <span class="rating-count">(27)</span>
+                        </div>
+                        <p class="service-description">Thorough and reliable house cleaning services. We bring our own supplies and equipment.</p>
+                        <div class="service-footer">
+                            <div class="service-price">₹1,500 <span>/cleaning</span></div>
+                            <a href="#" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image"></div>
+                    <div class="service-details">
+                        <span class="service-category">Carpentry</span>
+                        <h3 class="service-title">Custom Furniture & Repairs</h3>
+                        <div class="service-provider">
+                            <div class="provider-avatar"></div>
+                            <span class="provider-name">Vijay Singh</span>
+                        </div>
+                        <div class="service-rating">
+                            <span class="rating-stars">★★★★☆</span>
+                            <span class="rating-count">(15)</span>
+                        </div>
+                        <p class="service-description">Skilled carpenter specializing in custom furniture, repairs, and home improvement projects.</p>
+                        <div class="service-footer">
+                            <div class="service-price">₹1,000 <span>/day</span></div>
+                            <a href="#" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image"></div>
+                    <div class="service-details">
+                        <span class="service-category">Painting</span>
+                        <h3 class="service-title">Interior & Exterior Painting</h3>
+                        <div class="service-provider">
+                            <div class="provider-avatar"></div>
+                            <span class="provider-name">Rahul Verma</span>
+                        </div>
+                        <div class="service-rating">
+                            <span class="rating-stars">★★★★★</span>
+                            <span class="rating-count">(21)</span>
+                        </div>
+                        <p class="service-description">Professional painting services for homes and offices. Quality work with attention to detail.</p>
+                        <div class="service-footer">
+                            <div class="service-price">₹2,500 <span>/room</span></div>
+                            <a href="#" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="pagination-container">
+                <ul class="pagination">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">&laquo;</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">&raquo;</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>NearbyServices</h3>
+                    <p>Connecting you with trusted local service providers for all your needs.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Tutors</a></li>
+                        <li><a href="#">Plumbers</a></li>
+                        <li><a href="#">Electricians</a></li>
+                        <li><a href="#">House Help</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-envelope"></i> contact@nearbyservices.com</p>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Service Lane, Your City, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NearbyServices. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
